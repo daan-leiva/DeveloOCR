@@ -11,18 +11,26 @@ namespace DevelopOCR
 {
     class Program
     {
+        private static Dictionary<int, float> bw_thresholds = new Dictionary<int, float>();
+
         static void Main(string[] args)
         {
+            // set up bw_thresholds
+            bw_thresholds.Add(9, 0.3f);
+            bw_thresholds.Add(1, 0.1f);
+
+            int num_to_find = 1;
+
             string test_image_path = "C:/Users/Bruce Huffa/source/repos/DevelopOCR/DevelopOCR/test.png";
             // copy the image to a new location
-            Image image = Image.FromFile(MakeImageBlackNWhite(test_image_path));
+            Image image = Image.FromFile(MakeImageBlackNWhite(test_image_path, bw_thresholds[num_to_find]));
             string edited_image = "C:/Users/Bruce Huffa/source/repos/DevelopOCR/DevelopOCR/test_edit.png";
             image.Save(edited_image);
             string buffer_image = "C:/Users/Bruce Huffa/source/repos/DevelopOCR/DevelopOCR/test_buffer.png";
-            TesseractTest(edited_image, buffer_image);
+            TesseractTest(edited_image, buffer_image, num_to_find);
         }
 
-        private static void TesseractTest(string image_path, string buffer_path)
+        private static void TesseractTest(string image_path, string buffer_path, int number_to_find)
         {
             //Bitmap image = new Bitmap("C:/Users/Bruce Huffa/Desktop/testImageYarnFieldAllocation_3_a.PNG");
             //MakeImageBlackNWhite(image);
@@ -62,13 +70,13 @@ namespace DevelopOCR
                                                     {
                                                         Console.WriteLine("<BLOCK>");
                                                     }
-                                                    if (iter.GetText(PageIteratorLevel.Symbol).Trim().Contains("9"))
+                                                    if (iter.GetText(PageIteratorLevel.Symbol).Trim().Contains(number_to_find.ToString()))
                                                     {
                                                         
 
                                                         Rect location = new Rect();
                                                         iter.TryGetBoundingBox(PageIteratorLevel.Symbol, out location);
-                                                        if (location.Y1 < 200 && location.Y1 > 60)
+                                                        if (location.Y1 < 200 && location.Y1 > 60 && location.X1 < 80)
                                                         {
                                                             Console.Write(iter.GetText(PageIteratorLevel.Symbol));
                                                             Console.Write(" ");
@@ -79,7 +87,7 @@ namespace DevelopOCR
                                                             {
                                                                 // Modify the image using g here... 
                                                                 // Create a brush with an alpha value and use the g.FillRectangle function
-                                                                Color customColor = Color.FromArgb(50, Color.Black);
+                                                                Color customColor = Color.FromArgb(155, Color.Black);
                                                                 SolidBrush shadowBrush = new SolidBrush(customColor);
                                                                 g.FillRectangles(shadowBrush, new RectangleF[] { new RectangleF(location.X1, location.Y1, location.Width, location.Height) });
                                                             }
@@ -122,7 +130,7 @@ namespace DevelopOCR
         }
 
 
-        private static string MakeImageBlackNWhite(string image_path)
+        private static string MakeImageBlackNWhite(string image_path, float threshold)
         {
             Bitmap SourceImage = new Bitmap(image_path);
             using (Graphics gr = Graphics.FromImage(SourceImage)) // SourceImage is a Bitmap object
@@ -137,7 +145,7 @@ namespace DevelopOCR
 
                 var ia = new System.Drawing.Imaging.ImageAttributes();
                 ia.SetColorMatrix(new System.Drawing.Imaging.ColorMatrix(gray_matrix));
-                ia.SetThreshold(0.3f); // Change this threshold as needed
+                ia.SetThreshold(threshold); // Change this threshold as needed
                 var rc = new Rectangle(0, 0, SourceImage.Width, SourceImage.Height);
                 gr.DrawImage(SourceImage, rc, 0, 0, SourceImage.Width, SourceImage.Height, GraphicsUnit.Pixel, ia);
             }
