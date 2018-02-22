@@ -1,0 +1,13 @@
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\x64\liblept172.dll
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\x64\libtesseract304.dll
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\x86\liblept172.dll
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\x86\libtesseract304.dll
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\DevelopOCR.exe.config
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\DevelopOCR.exe
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\DevelopOCR.pdb
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\Tesseract.dll
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\bin\Debug\Tesseract.xml
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\obj\Debug\DevelopOCR.csprojResolveAssemblyReference.cache
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\obj\Debug\DevelopOCR.csproj.CoreCompileInputs.cache
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\obj\Debug\DevelopOCR.exe
+C:\Users\Bruce Huffa\source\repos\DevelopOCR\DevelopOCR\obj\Debug\DevelopOCR.pdb
